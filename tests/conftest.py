@@ -2,29 +2,46 @@ from pytest import fixture
 
 
 @fixture
-def db(set_env_vars):
-    from model_service import db
-
-    db.measurements.insert_many(
-        [
-            {
-                "thickness": "2.5",
-                "cookTime": 90,
-                "doneness": "rare",
-            },
-            {
-                "thickness": "3.5",
-                "cookTime": 120,
-                "doneness": "rare",
-            },
-        ]
-    )
-
-    yield db
-
-    db.measurements.drop()
-
-
-@fixture
-def set_env_vars(monkeypatch):
-    monkeypatch.setenv("MONGO_DATABASE", "test_steak_project")
+def measurements():
+    return [
+        {
+            "thickness": 0.5,
+            "cookTime": 30,
+            "doneness": "well",
+        },
+        {
+            "thickness": 1.0,
+            "cookTime": 30,
+            "doneness": "medium",
+        },
+        {
+            "thickness": 1.5,
+            "cookTime": 30,
+            "doneness": "rare",
+        },
+        {
+            "thickness": 2.0,
+            "cookTime": 30,
+            "doneness": "raw",
+        },
+        {
+            "thickness": 0.5,
+            "cookTime": 60,
+            "doneness": "burnt",
+        },
+        {
+            "thickness": 1.0,
+            "cookTime": 60,
+            "doneness": "well",
+        },
+        {
+            "thickness": 1.5,
+            "cookTime": 60,
+            "doneness": "medium",
+        },
+        {
+            "thickness": 2.0,
+            "cookTime": 60,
+            "doneness": "rare",
+        },
+    ]
