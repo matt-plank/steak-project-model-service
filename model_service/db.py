@@ -2,7 +2,7 @@ import os
 
 from pymongo import MongoClient
 
-from .types import Coefs, Measurement
+from .types import Measurement, Model
 
 MONGO_URI: str = os.environ["MONGO_URI"]
 MONGO_DATABASE: str = os.environ["MONGO_DATABASE"]
@@ -18,5 +18,5 @@ def all_measurements() -> list[Measurement]:
     return list(measurements.find({}))
 
 
-def save_model_coefficients(coefs: Coefs):
-    models.insert_one(coefs)
+def save_model(model: Model):
+    models.insert_one(model)
